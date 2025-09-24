@@ -12,7 +12,7 @@ const database = new Client({
 
 try {
     await database.connect();
-    console.log("connected to the database successfully");
+    console.log("Connected to the database successfully");
 } catch (error) {
     console.error("Database connection failed", error);
     process.exit(1);
