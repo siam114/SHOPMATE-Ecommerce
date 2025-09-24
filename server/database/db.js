@@ -14,5 +14,6 @@ try {
     await database.connect();
     console.log("connected to the database successfully");
 } catch (error) {
-    
+    console.error("Database connection failed", error);
+    process.exit(1);
 }
