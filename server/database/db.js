@@ -9,3 +9,10 @@ const database = new Client({
     password: process.env.DB_PASSWORD,
     port: process.env.DB_PORT,
 })
+
+try {
+    await database.connect();
+    console.log("connected to the database successfully");
+} catch (error) {
+    
+}
