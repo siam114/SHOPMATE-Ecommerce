@@ -1,10 +1,10 @@
-import {createUserTable} from "../models/userTable"
-import {createOrderItemTable} from "../models/orderItemsTable"
-import {createOrdersTable} from "../models/ordersTable"
-import {createPaymentsTable} from "../models/paymentsTable"
-import {createProductReviewsTable} from "../models/productReviewsTable"
-import {createProductsTable} from "../models/productTable"
-import {createShippingInfoTable} from "../models/shippinginfoTable"
+import {createUserTable} from "../models/userTable.js"
+import {createOrderItemTable} from "../models/orderItemsTable.js"
+import {createOrdersTable} from "../models/ordersTable.js"
+import {createPaymentsTable} from "../models/paymentsTable.js"
+import {createProductReviewsTable} from "../models/productReviewsTable.js"
+import {createProductsTable} from "../models/productTable.js"
+import {createShippingInfoTable} from "../models/shippinginfoTable.js"
 
 export const createTables = async () => {
     try {
