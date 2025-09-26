@@ -8,8 +8,15 @@ import {createShippingInfoTable} from "../models/shippinginfoTable"
 
 export const createTables = async () => {
     try {
-        
+        await createUserTable();
+        await createOrderItemTable();
+        await createOrdersTable();
+        await createPaymentsTable();
+        await createProductReviewsTable();
+        await createProductsTable();
+        await createShippingInfoTable();
+        console.log("All Tables create successfully");
     } catch (error) {
-        
+        console.log("Error Creating Tables", error);
     }
 }
