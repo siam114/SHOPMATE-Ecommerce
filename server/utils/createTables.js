@@ -9,11 +9,11 @@ import {createShippingInfoTable} from "../models/shippinginfoTable.js"
 export const createTables = async () => {
     try {
         await createUserTable();
-        await createOrderItemTable();
+        await createProductsTable();
         await createOrdersTable();
+        await createOrderItemTable();
         await createPaymentsTable();
         await createProductReviewsTable();
-        await createProductsTable();
         await createShippingInfoTable();
         console.log("All Tables create successfully");
     } catch (error) {
