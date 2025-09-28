@@ -1,6 +1,7 @@
 import ErrorHandler from "../middlewares/errorMiddleware.js";
 import { catchAsyncErrors } from "../middlewares/catchAsyncError.js";
 import database from "../database/db.js";
+import bcrypt from "bcrypt";
 
 export const register = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -15,7 +16,10 @@ export const register = catchAsyncErrors(async (req, res, next) => {
 
   if (isAlreadyRegistered.rows.length > 0) {
     return next(new ErrorHandler("User already registered", 400));
-  }
+  };
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
 });
 
 export const login = catchAsyncErrors(async (req, res, next) => {});
