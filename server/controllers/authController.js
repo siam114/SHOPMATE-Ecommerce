@@ -7,6 +7,10 @@ export const register = catchAsyncErrors(async(req,res,next) =>{
     if(!name || !email || !password){
         return next(new ErrorHandler("Please provide all required fields", 400))
     }
+
+    const isAlreadyRegistered = await database.query(
+        `SELECT * FROM users WHERE email = $1`,[email]
+    )
 })
 
 
