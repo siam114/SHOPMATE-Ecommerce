@@ -10,20 +10,24 @@ export const errorMiddleware = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
 
   if (err.code === 11000) {
-    const message = "Duplicate field value entered";
+    const message = `Duplicate field value entered`;
     err = new ErrorHandler(message, 400);
   }
 
-  if ((err.name = "JsonWebTokenError")) {
+  if (err.name === "JsonWebTokenError") {
     const message = "JSON Web Token is invalid, try again";
     err = new ErrorHandler(message, 400);
   }
 
-  if ((err.name = "TokenExpiredError")) {
+  if (err.name === "TokenExpiredError") {
     const message = "JSON Web Token has expired, try again";
     err = new ErrorHandler(message, 400);
   }
-  console.log(err);
+
+  if (err.name === "CastError") {
+    const message = `Invalid ${err.path}: ${err.value}`;
+    err = new ErrorHandler(message, 400);
+  }
 
   const errorMessage = err.errors
     ? Object.values(err.errors)
@@ -34,7 +38,7 @@ export const errorMiddleware = (err, req, res, next) => {
   return res.status(err.statusCode).json({
     success: false,
     message: errorMessage,
-  })
+  });
 };
 
 export default ErrorHandler;
