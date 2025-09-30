@@ -20,7 +20,8 @@ export const register = catchAsyncErrors(async (req, res, next) => {
 
   const hashedPassword = await bcrypt.hash(password, 10);
   const user = await database.query(
-    "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING"
+    "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING",
+    [name, email, hashedPassword]
   );
 });
 
