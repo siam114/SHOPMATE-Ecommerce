@@ -16,10 +16,12 @@ export const register = catchAsyncErrors(async (req, res, next) => {
 
   if (isAlreadyRegistered.rows.length > 0) {
     return next(new ErrorHandler("User already registered", 400));
-  };
+  }
 
   const hashedPassword = await bcrypt.hash(password, 10);
-
+  const user = await database.query(
+    "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING"
+  );
 });
 
 export const login = catchAsyncErrors(async (req, res, next) => {});
