@@ -37,16 +37,17 @@ export const login = catchAsyncErrors(async (req, res, next) => {
   const user = await database.query(`SELECT * FROM users WHERE email = $1`, [
     email,
   ]);
-  if(user.rows.length === 0){
-    return next(new ErrorHandler("Invalid email and password",401));
+  if (user.rows.length === 0) {
+    return next(new ErrorHandler("Invalid email and password", 401));
   }
 
   const isPasswordMatch = await bcrypt.compare(password, user.rows[0].password);
-  if(!isPasswordMatch){
-     return next(new ErrorHandler("Invalid email and password",401));
-  };
+  if (!isPasswordMatch) {
+    return next(new ErrorHandler("Invalid email and password", 401));
+  }
   sendToken(user.rows[0], 200, "Logged in successfully", res);
 });
+
 
 export const getUser = catchAsyncErrors(async (req, res, next) => {});
 
