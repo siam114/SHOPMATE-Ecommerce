@@ -45,7 +45,7 @@ export const login = catchAsyncErrors(async (req, res, next) => {
   if(!isPasswordMatch){
      return next(new ErrorHandler("Invalid email and password",401));
   };
-  sendToken(user.rows[0], 201, "Logged in successfully", res);
+  sendToken(user.rows[0], 200, "Logged in successfully", res);
 });
 
 export const getUser = catchAsyncErrors(async (req, res, next) => {});
