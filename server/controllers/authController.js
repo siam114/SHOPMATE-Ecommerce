@@ -29,6 +29,9 @@ export const register = catchAsyncErrors(async (req, res, next) => {
 
 export const login = catchAsyncErrors(async (req, res, next) => {
   const {email,password} = req.body;
+  if(!email || !password){
+    return next(new ErrorHandler("Please provide email and password.",400));
+  }
 });
 
 export const getUser = catchAsyncErrors(async (req, res, next) => {});
