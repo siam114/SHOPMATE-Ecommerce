@@ -24,16 +24,18 @@ export const register = catchAsyncErrors(async (req, res, next) => {
     "INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING *",
     [name, email, hashedPassword]
   );
-  sendToken(user.rows[0], 201, "User registed successfully", res)
+  sendToken(user.rows[0], 201, "User registed successfully", res);
 });
 
 export const login = catchAsyncErrors(async (req, res, next) => {
-  const {email,password} = req.body;
-  if(!email || !password){
-    return next(new ErrorHandler("Please provide email and password.",400));
+  const { email, password } = req.body;
+  if (!email || !password) {
+    return next(new ErrorHandler("Please provide email and password.", 400));
   }
 
-  const user = await database.query(`SELECT * FROM users WHERE email = $1`, [email])
+  const user = await database.query(`SELECT * FROM users WHERE email = $1`, [
+    email,
+  ]);
 });
 
 export const getUser = catchAsyncErrors(async (req, res, next) => {});
