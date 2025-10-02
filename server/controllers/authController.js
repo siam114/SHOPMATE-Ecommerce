@@ -36,6 +36,9 @@ export const login = catchAsyncErrors(async (req, res, next) => {
   const user = await database.query(`SELECT * FROM users WHERE email = $1`, [
     email,
   ]);
+  if(user.rows.length === 0){
+    return next(new ErrorHandler("Invalid email and password",401));
+  }
 });
 
 export const getUser = catchAsyncErrors(async (req, res, next) => {});
