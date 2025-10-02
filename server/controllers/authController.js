@@ -39,6 +39,8 @@ export const login = catchAsyncErrors(async (req, res, next) => {
   if(user.rows.length === 0){
     return next(new ErrorHandler("Invalid email and password",401));
   }
+
+  const isPasswordMatch = await bcrypt.compare(password, user.rows[0].password)
 });
 
 export const getUser = catchAsyncErrors(async (req, res, next) => {});
