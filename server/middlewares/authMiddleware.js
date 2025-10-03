@@ -19,7 +19,7 @@ export const isAuthenticated = catchAsyncErrors(async (req, res, next) => {
   next();
 });
 
-export const authorizeRoles = (...roles) => {
+export const authorizedRoles = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       return next(
@@ -29,5 +29,6 @@ export const authorizeRoles = (...roles) => {
         )
       );
     }
+    next();
   };
 };
