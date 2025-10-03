@@ -18,3 +18,8 @@ export const isAuthenticated = catchAsyncErrors(async (req, res, next) => {
   req.user = user.rows[0];
   next();
 });
+
+
+export const authorizeRoles = (...roles) => {
+    return (req, res, next) => {}
+}
