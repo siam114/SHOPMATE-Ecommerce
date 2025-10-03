@@ -21,4 +21,4 @@ export async function createProductsTable() {
     console.error("❌ Failed To Create Products Table.", error);
     process.exit(1);
   }
-}
+};
