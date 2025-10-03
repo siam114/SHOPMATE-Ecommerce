@@ -15,4 +15,6 @@ export const isAuthenticated = catchAsyncErrors(async (req, res, next) => {
     "SELECT * FROM users WHERE id = $1 LIMIT 1",
     [decoded.id]
   );
+  req.user = user.rows[0];
+  next();
 });
