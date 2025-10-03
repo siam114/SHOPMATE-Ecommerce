@@ -20,4 +20,4 @@ export async function createShippingInfoTable() {
     console.error("❌ Failed To Create Shipping Info Table.", error);
     process.exit(1);
   }
-}
+};
