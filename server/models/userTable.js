@@ -1,8 +1,8 @@
-import database from '../database/db.js';
+import database from "../database/db.js";
 
 export async function createUserTable() {
-    try {
-        const query = `
+  try {
+    const query = `
           CREATE TABLE IF NOT EXISTS users (
             id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
             name VARCHAR(100) NOT NULL CHECK (char_length(name) >= 3),
@@ -15,9 +15,9 @@ export async function createUserTable() {
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
           );
         `;
-        await database.query(query);
-    } catch (error) {
-        console.error("❌ Failed To Create User Table.", error)
-        process.exit(1);
-    }
+    await database.query(query);
+  } catch (error) {
+    console.error("❌ Failed To Create User Table.", error);
+    process.exit(1);
+  }
 }
