@@ -55,4 +55,9 @@ export const getUser = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-export const logout = catchAsyncErrors(async (req, res, next) => {});
+export const logout = catchAsyncErrors(async (req, res, next) => {
+  res.status(200).cookie("token", "", {
+    expires: new Date(DataTransfer.now()),
+    httpOnly: true,
+  })
+});
