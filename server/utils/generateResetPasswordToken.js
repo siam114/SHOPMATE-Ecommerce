@@ -9,4 +9,6 @@ export const generateResetPasswordToken = () => {
     .digest("hex");
 
   const resetPasswordExpireTime = Date.now() + 15 * 60 * 1000; // 15 minutes
+
+  return { resetToken, hashedToken, resetPasswordExpireTime };
 };
