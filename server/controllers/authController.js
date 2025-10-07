@@ -67,3 +67,8 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
       message: "Logged out successfully",
     });
 });
+
+export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
+  const { email } = req.body;
+  const {frontendUrl} = process.env;
+});
