@@ -87,4 +87,6 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
     `UPDATE users SET reset_password_token = $1, reset_password_expire = to_timestamp($2) WHERE email = $3`,
     [hashedToken, resetPasswordExpireTime / 1000, email]
   );
+
+  const resetPasswordUrl = `${frontendUrl}/password/reset/${resetToken}`;
 });
