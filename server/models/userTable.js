@@ -20,4 +20,4 @@ export async function createUserTable() {
     console.error("❌ Failed To Create User Table.", error);
     process.exit(1);
   }
-}
+};
