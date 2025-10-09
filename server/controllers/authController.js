@@ -4,7 +4,7 @@ import database from "../database/db.js";
 import bcrypt from "bcrypt";
 import { sendToken } from "../utils/jwtToken.js";
 import { generateResetPasswordToken } from "./../utils/generateResetPasswordToken.js";
-import { generateEmailTemplate } from './../utils/generateForgotPasswordEmailTemplate.js';
+import { generateEmailTemplate } from "./../utils/generateForgotPasswordEmailTemplate.js";
 
 export const register = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
