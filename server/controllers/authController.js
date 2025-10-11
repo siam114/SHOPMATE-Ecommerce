@@ -100,6 +100,10 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
       subject: "Ecommerce Password Recovery",
       message,
     })
+    res.status(200).json({
+      success: true,
+      message: `Email sent to ${user.email} successfully`,
+    })
   } catch (error) {
     
   }
