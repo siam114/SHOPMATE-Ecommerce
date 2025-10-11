@@ -73,13 +73,13 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
 
 export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
   const { email } = req.body;
-  const { frontendUrl } = process.env;
+  const { frontendUrl } = req.query;
   let userResult = await database.query(
     `SELECT * FROM users WHERE email = $1`,
     [email]
   );
   if (userResult.rows.length === 0) {
-    return next(new ErrorHandler("User not found with this email", 404));
+    return next(new ErrorHandler("User not found with this email.", 404));
   }
   const user = userResult.rows[0];
   const { hashedToken, resetPasswordExpireTime, resetToken } =
@@ -99,16 +99,16 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
       email: user.email,
       subject: "Ecommerce Password Recovery",
       message,
-    })
+    });
     res.status(200).json({
       success: true,
-      message: `Email sent to ${user.email} successfully`,
-    })
+      message: `Email sent to ${user.email} successfully.`,
+    });
   } catch (error) {
     await database.query(
       `UPDATE users SET reset_password_token = NULL, reset_password_expire = NULL WHERE email = $1`,
       [email]
     );
-    return next(new ErrorHandler(error.message, 500));
+    return next(new ErrorHandler("Email could not be sent.", 500));
   }
 });
