@@ -5,6 +5,7 @@ import bcrypt from "bcrypt";
 import { sendToken } from "../utils/jwtToken.js";
 import { generateResetPasswordToken } from "./../utils/generateResetPasswordToken.js";
 import { generateEmailTemplate } from "./../utils/generateForgotPasswordEmailTemplate.js";
+import { sendEmail } from './../utils/sendEmail.js';
 
 export const register = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -92,4 +93,14 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
   const resetPasswordUrl = `${frontendUrl}/password/reset/${resetToken}`;
 
   const message = generateEmailTemplate(resetPasswordUrl);
+
+  try {
+    await sendEmail({
+      email: user.email,
+      subject: "Ecommerce Password Recovery",
+      message,
+    })
+  } catch (error) {
+    
+  }
 });
