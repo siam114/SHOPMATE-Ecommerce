@@ -110,5 +110,5 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
       [email]
     );
     return next(new ErrorHandler("Email could not be sent.", 500));
-  }
+  };
 });
