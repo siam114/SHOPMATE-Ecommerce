@@ -73,23 +73,22 @@ export const logout = catchAsyncErrors(async (req, res, next) => {
 
 export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
   const { email } = req.body;
-  const {frontendUrl} = req.query;
-    let userResult = await database.query(
+  const { frontendUrl } = req.query;
+  let userResult = await database.query(
     `SELECT * FROM users WHERE email = $1`,
     [email]
   );
 
-   if (userResult.rows.length === 0) {
+  if (userResult.rows.length === 0) {
     return next(new ErrorHandler("User not found with this email.", 404));
   }
 
-    const user = userResult.rows[0];
+  const user = userResult.rows[0];
   const { hashedToken, resetPasswordExpireTime, resetToken } =
     generateResetPasswordToken();
 
-      await database.query(
+  await database.query(
     `UPDATE users SET reset_password_token = $1, reset_password_expire = to_timestamp($2) WHERE email = $3`,
     [hashedToken, resetPasswordExpireTime / 1000, email]
   );
-
-})
+});
