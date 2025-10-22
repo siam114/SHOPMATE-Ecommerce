@@ -3,9 +3,9 @@ import { catchAsyncErrors } from "../middlewares/catchAsyncError.js";
 import database from "../database/db.js";
 import bcrypt from "bcrypt";
 import { sendToken } from "../utils/jwtToken.js";
-import { generateResetPasswordToken } from "./../utils/generateResetPasswordToken.js";
-import { generateEmailTemplate } from "./../utils/generateForgotPasswordEmailTemplate.js";
-import { sendEmail } from "./../utils/sendEmail.js";
+// import { generateResetPasswordToken } from "./../utils/generateResetPasswordToken.js";
+// import { generateEmailTemplate } from "./../utils/generateForgotPasswordEmailTemplate.js";
+// import { sendEmail } from "./../utils/sendEmail.js";
 
 export const register = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -78,4 +78,8 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
     `SELECT * FROM users WHERE email = $1`,
     [email]
   );
+
+   if (userResult.rows.length === 0) {
+    return next(new ErrorHandler("User not found with this email.", 404));
+  }
 })
