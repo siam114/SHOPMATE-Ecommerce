@@ -96,7 +96,7 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   const message = generateEmailTemplate(resetPasswordUrl);
 
-   try {
+  try {
     await sendEmail({
       email: user.email,
       subject: "Ecommerce Password Recovery",
