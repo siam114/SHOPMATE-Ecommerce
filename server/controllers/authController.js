@@ -147,4 +147,6 @@ export const resetPassword = catchAsyncErrors(async (req, res, next) => {
       new ErrorHandler("Password must be between 8 and 16 characters", 400)
     );
   }
+
+  const hashedPassword = await bcrypt.hash(req.body.password, 10);
 });
