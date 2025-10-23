@@ -124,4 +124,7 @@ export const resetPassword = catchAsyncErrors(async (req, res, next) => {
     `SELECT * FROM users WHERE reset_password_token = $1 AND reset_password_expire > NOW()`,
     [resetPawordToken]
   );
+  if (user.rows.length === 0) {
+    return next(new ErrorHandler("Invalid or expired reset token", 400));
+  }
 })
