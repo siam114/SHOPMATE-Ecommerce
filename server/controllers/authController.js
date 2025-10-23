@@ -149,4 +149,9 @@ export const resetPassword = catchAsyncErrors(async (req, res, next) => {
   }
 
   const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+  const updatedUser = await database.query(
+    `UPDATE users SET password = $1, reset_password_token = NULL, reset_password_expire = NULL WHERE id = $2 RETURNING *`,
+    [hashedPassword, user.rows[0].id]
+  )
 });
