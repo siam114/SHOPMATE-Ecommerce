@@ -119,4 +119,9 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
 export const resetPassword = catchAsyncErrors(async (req, res, next) => {
   const { token } = req.params;
   const resetPawordToken = crypto.createHash("sha256").update(token).digest("hex");
+
+  const user = await database.query(
+    `SELECT * FROM users WHERE reset_password_token = $1 AND reset_password_expire > NOW()`,
+    [resetPawordToken]
+  );
 })
