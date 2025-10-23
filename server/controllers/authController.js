@@ -6,6 +6,7 @@ import { sendToken } from "../utils/jwtToken.js";
 import { generateResetPasswordToken } from "../utils/generateResetPasswordToken.js";
 import { generateEmailTemplate } from "../utils/generateForgotPasswordEmailTemplate.js";
 import { sendEmail } from "../utils/sendEmail.js";
+import crypto from "crypto";
 
 export const register = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -116,5 +117,6 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
 });        //problem ace
 
 export const resetPassword = catchAsyncErrors(async (req, res, next) => {
-  
+  const { token } = req.params;
+  const resetPawordToken = crypto.createHash("sha256").update(token).digest("hex");
 })
