@@ -114,11 +114,14 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
     );
     return next(new ErrorHandler("Email could not be sent.", 500));
   }
-});        //problem ace
+}); //problem ace
 
 export const resetPassword = catchAsyncErrors(async (req, res, next) => {
   const { token } = req.params;
-  const resetPawordToken = crypto.createHash("sha256").update(token).digest("hex");
+  const resetPawordToken = crypto
+    .createHash("sha256")
+    .update(token)
+    .digest("hex");
 
   const user = await database.query(
     `SELECT * FROM users WHERE reset_password_token = $1 AND reset_password_expire > NOW()`,
@@ -127,7 +130,17 @@ export const resetPassword = catchAsyncErrors(async (req, res, next) => {
   if (user.rows.length === 0) {
     return next(new ErrorHandler("Invalid or expired reset token", 400));
   }
-  if(req.body.password !== req.body.confirmPassword){
+  if (req.body.password !== req.body.confirmPassword) {
     return next(new ErrorHandler("Password does not match", 400));
   }
-})
+  if (
+    req.body.password.length < 8 ||
+    req.body.password.length > 16 ||
+    req.body.confirmPassword.length < 8 ||
+    req.body.confirmPassword.length > 16
+  ) {
+    return next(
+      new ErrorHandler("Password must be between 8 and 16 characters", 400)
+    );
+  }
+});
