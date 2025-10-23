@@ -14,6 +14,10 @@ export const register = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Please provide all required fields", 400));
   }
 
+  if(password.length < 8 || password.length > 16) {
+    return next(new ErrorHandler("Password must be between 8 and 16 characters", 400));
+  }
+
   const isAlreadyRegistered = await database.query(
     `SELECT * FROM users WHERE email = $1`,
     [email]
