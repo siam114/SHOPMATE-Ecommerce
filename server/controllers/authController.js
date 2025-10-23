@@ -140,10 +140,10 @@ export const resetPassword = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Password does not match", 400));
   }
   if (
-    req.body.password.length < 8 ||
-    req.body.password.length > 16 ||
-    req.body.confirmPassword.length < 8 ||
-    req.body.confirmPassword.length > 16
+    req.body.password?.length < 8 ||
+    req.body.password?.length > 16 ||
+    req.body.confirmPassword?.length < 8 ||
+    req.body.confirmPassword?.length > 16
   ) {
     return next(
       new ErrorHandler("Password must be between 8 and 16 characters", 400)
