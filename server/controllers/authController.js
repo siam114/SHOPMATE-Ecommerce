@@ -120,7 +120,7 @@ export const forgotPassword = catchAsyncErrors(async (req, res, next) => {
     );
     return next(new ErrorHandler("Email could not be sent.", 500));
   }
-}); //problem ace
+});
 
 export const resetPassword = catchAsyncErrors(async (req, res, next) => {
   const { token } = req.params;
