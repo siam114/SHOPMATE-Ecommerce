@@ -237,6 +237,9 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
       [name, email, req.user.id]
     );
   } else {
-    
+     user = await database.query(
+      "UPDATE users SET name = $1, email = $2, avatar = $3 WHERE id = $4 RETURNING *",
+      [name, email, avatarData, req.user.id]
+    );
   }
 });
