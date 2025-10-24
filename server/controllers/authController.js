@@ -214,5 +214,14 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
     if (req.user?.avatar?.public_id) {
       await cloudinary.uploader.destroy(req.user.avatar.public_id);
     }
+
+    const newProfileImage = await cloudinary.uploader.upload(
+      avatar.tempFilePath,
+      {
+        folder: "Ecommerce_Avatars",
+        width: 150,
+        crop: "scale",
+      }
+    );
   }
 });
