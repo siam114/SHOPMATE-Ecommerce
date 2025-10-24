@@ -160,8 +160,8 @@ export const resetPassword = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const updatePassword = catchAsyncErrors(async (req, res, next) => {
-    const { currentPassword, newPassword, confirmNewPassword } = req.body;
-      if (!currentPassword || !newPassword || !confirmNewPassword) {
+  const { currentPassword, newPassword, confirmNewPassword } = req.body;
+  if (!currentPassword || !newPassword || !confirmNewPassword) {
     return next(new ErrorHandler("Please provide all required fields.", 400));
   }
 
@@ -169,7 +169,7 @@ export const updatePassword = catchAsyncErrors(async (req, res, next) => {
     currentPassword,
     req.user.password
   );
-    if (!isPasswordMatch) {
+  if (!isPasswordMatch) {
     return next(new ErrorHandler("Current password is incorrect.", 401));
   }
-})
+});
