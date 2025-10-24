@@ -194,5 +194,10 @@ export const updatePassword = catchAsyncErrors(async (req, res, next) => {
     req.user.id,
   ]);
 
+    res.status(200).json({
+    success: true,
+    message: "Password updated successfully.",
+  });
+
 
 });
