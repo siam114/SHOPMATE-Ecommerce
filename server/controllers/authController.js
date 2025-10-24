@@ -242,4 +242,10 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
       [name, email, avatarData, req.user.id]
     );
   }
+
+    res.status(200).json({
+    success: true,
+    message: "Profile updated successfully.",
+    user: user.rows[0],
+  });
 });
