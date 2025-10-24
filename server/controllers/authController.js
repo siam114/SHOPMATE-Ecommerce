@@ -198,3 +198,7 @@ export const updatePassword = catchAsyncErrors(async (req, res, next) => {
     message: "Password updated successfully.",
   });
 });
+
+export const updateProfile = catchAsyncErrors(async (req, res, next) => {
+  
+})
