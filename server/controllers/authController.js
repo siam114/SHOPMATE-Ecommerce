@@ -228,16 +228,16 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
       public_id: newProfileImage.public_id,
       url: newProfileImage.secure_url,
     };
-  };
+  }
 
-    let user;
+  let user;
   if (Object.keys(avatarData).length === 0) {
     user = await database.query(
       "UPDATE users SET name = $1, email = $2 WHERE id = $3 RETURNING *",
       [name, email, req.user.id]
     );
   } else {
-     user = await database.query(
+    user = await database.query(
       "UPDATE users SET name = $1, email = $2, avatar = $3 WHERE id = $4 RETURNING *",
       [name, email, avatarData, req.user.id]
     );
