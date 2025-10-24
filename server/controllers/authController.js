@@ -224,7 +224,7 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
       }
     );
 
-        avatarData = {
+    avatarData = {
       public_id: newProfileImage.public_id,
       url: newProfileImage.secure_url,
     };
