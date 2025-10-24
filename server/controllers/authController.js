@@ -164,4 +164,12 @@ export const updatePassword = catchAsyncErrors(async (req, res, next) => {
       if (!currentPassword || !newPassword || !confirmNewPassword) {
     return next(new ErrorHandler("Please provide all required fields.", 400));
   }
+
+  const isPasswordMatch = await bcrypt.compare(
+    currentPassword,
+    req.user.password
+  );
+    if (!isPasswordMatch) {
+    return next(new ErrorHandler("Current password is incorrect.", 401));
+  }
 })
