@@ -7,6 +7,7 @@ import { generateResetPasswordToken } from "../utils/generateResetPasswordToken.
 import { generateEmailTemplate } from "../utils/generateForgotPasswordEmailTemplate.js";
 import { sendEmail } from "../utils/sendEmail.js";
 import crypto from "crypto";
+import { v2 as cloudinary } from "cloudinary";
 
 export const register = catchAsyncErrors(async (req, res, next) => {
   const { name, email, password } = req.body;
@@ -207,4 +208,6 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
     if (name.trim().length === 0 || email.trim().length === 0) {
     return next(new ErrorHandler("Name and email cannot be empty.", 400));
   }
+  let avatarData = {};
+
 })
