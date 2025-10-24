@@ -172,10 +172,10 @@ export const updatePassword = catchAsyncErrors(async (req, res, next) => {
   if (!isPasswordMatch) {
     return next(new ErrorHandler("Current password is incorrect.", 401));
   }
-    if (newPassword !== confirmNewPassword) {
+  if (newPassword !== confirmNewPassword) {
     return next(new ErrorHandler("New passwords do not match.", 400));
   }
-    if (
+  if (
     newPassword.length < 8 ||
     newPassword.length > 16 ||
     confirmNewPassword.length < 8 ||
@@ -185,5 +185,5 @@ export const updatePassword = catchAsyncErrors(async (req, res, next) => {
       new ErrorHandler("Password must be between 8 and 16 characters.", 400)
     );
   }
-
+  
 });
