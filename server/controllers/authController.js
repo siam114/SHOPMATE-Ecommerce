@@ -200,5 +200,8 @@ export const updatePassword = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const updateProfile = catchAsyncErrors(async (req, res, next) => {
-  
+  const { name, email } = req.body;
+  if (!name || !email) {
+    return next(new ErrorHandler("Please provide all required fields.", 400));
+  }
 })
