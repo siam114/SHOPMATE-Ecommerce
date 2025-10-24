@@ -158,3 +158,7 @@ export const resetPassword = catchAsyncErrors(async (req, res, next) => {
   );
   sendToken(updatedUser.rows[0], 200, "Password reset successful", res);
 });
+
+export const updatePassword = catchAsyncErrors(async (req, res, next) => {
+  
+})
