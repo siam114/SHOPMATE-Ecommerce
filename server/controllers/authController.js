@@ -204,4 +204,7 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
   if (!name || !email) {
     return next(new ErrorHandler("Please provide all required fields.", 400));
   }
+    if (name.trim().length === 0 || email.trim().length === 0) {
+    return next(new ErrorHandler("Name and email cannot be empty.", 400));
+  }
 })
