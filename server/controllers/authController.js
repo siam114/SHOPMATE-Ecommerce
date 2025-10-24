@@ -209,5 +209,11 @@ export const updateProfile = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHandler("Name and email cannot be empty.", 400));
   }
   let avatarData = {};
+  if(req.files && req.files.avatar){
+     const { avatar } = req.files;
+    if (req.user?.avatar?.public_id) {
+      await cloudinary.uploader.destroy(req.user.avatar.public_id);
+    }
+  }
 
 })
