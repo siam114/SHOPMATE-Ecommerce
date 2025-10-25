@@ -12,4 +12,11 @@ export const createProduct = catchAsyncErrors(async (req, res, next) => {
       new ErrorHandler("Please provide complete product details.", 400)
     );
   }
+
+  let uploadedImages = [];
+    if (req.files && req.files.images) {
+          const images = Array.isArray(req.files.images)
+      ? req.files.images
+      : [req.files.images];
+    }
 })
