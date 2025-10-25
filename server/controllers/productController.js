@@ -26,7 +26,7 @@ export const createProduct = catchAsyncErrors(async (req, res, next) => {
         crop: "scale",
       });
 
-          uploadedImages.push({
+      uploadedImages.push({
         url: result.secure_url,
         public_id: result.public_id,
       });
