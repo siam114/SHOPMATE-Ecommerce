@@ -18,5 +18,9 @@ export const createProduct = catchAsyncErrors(async (req, res, next) => {
     const images = Array.isArray(req.files.images)
       ? req.files.images
       : [req.files.images];
+
+     for (const image of images){
+        
+     }
   }
 });
