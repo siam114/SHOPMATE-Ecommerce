@@ -19,12 +19,12 @@ export const createProduct = catchAsyncErrors(async (req, res, next) => {
       ? req.files.images
       : [req.files.images];
 
-     for (const image of images){
-         const result = await cloudinary.uploader.upload(image.tempFilePath, {
+    for (const image of images) {
+      const result = await cloudinary.uploader.upload(image.tempFilePath, {
         folder: "Ecommerce_Product_Images",
         width: 1000,
         crop: "scale",
       });
-     }
+    }
   }
 });
