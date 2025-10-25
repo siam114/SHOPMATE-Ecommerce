@@ -25,6 +25,11 @@ export const createProduct = catchAsyncErrors(async (req, res, next) => {
         width: 1000,
         crop: "scale",
       });
+
+          uploadedImages.push({
+        url: result.secure_url,
+        public_id: result.public_id,
+      });
     }
   }
 });
