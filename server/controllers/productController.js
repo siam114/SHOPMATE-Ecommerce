@@ -32,4 +32,10 @@ export const createProduct = catchAsyncErrors(async (req, res, next) => {
       });
     }
   }
+
+
+  const product = await database.query(
+    
+  )
+
 });
