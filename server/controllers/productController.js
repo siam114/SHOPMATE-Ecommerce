@@ -33,6 +33,7 @@ export const createProduct = catchAsyncErrors(async (req, res, next) => {
     }
   }
 
+  
   const product = await database.query(
     `INSERT INTO products (name, description, price, category, stock, images, created_by) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
     [
@@ -46,10 +47,9 @@ export const createProduct = catchAsyncErrors(async (req, res, next) => {
     ]
   );
 
-    res.status(201).json({
+  res.status(201).json({
     success: true,
     message: "Product created successfully.",
     product: product.rows[0],
   });
-
 });
