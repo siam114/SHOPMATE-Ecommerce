@@ -35,7 +35,16 @@ export const createProduct = catchAsyncErrors(async (req, res, next) => {
 
 
   const product = await database.query(
-    
-  )
+     `INSERT INTO products (name, description, price, category, stock, images, created_by) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *`,
+    [
+      name,
+      description,
+      price / 283,
+      category,
+      stock,
+      JSON.stringify(uploadedImages),
+      created_by,
+    ]
+  );
 
 });
