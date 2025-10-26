@@ -45,5 +45,11 @@ export const createProduct = catchAsyncErrors(async (req, res, next) => {
       created_by,
     ]
   );
-  
+
+    res.status(201).json({
+    success: true,
+    message: "Product created successfully.",
+    product: product.rows[0],
+  });
+
 });
