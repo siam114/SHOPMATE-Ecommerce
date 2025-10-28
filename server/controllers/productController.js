@@ -52,3 +52,6 @@ export const createProduct = catchAsyncErrors(async (req, res, next) => {
     product: product.rows[0],
   });
 });
+
+
+export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {})
