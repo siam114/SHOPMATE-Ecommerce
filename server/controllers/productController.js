@@ -39,7 +39,7 @@ export const createProduct = catchAsyncErrors(async (req, res, next) => {
     [
       name,
       description,
-      price / 283,
+      price / 122,
       category,
       stock,
       JSON.stringify(uploadedImages),
