@@ -54,4 +54,6 @@ export const createProduct = catchAsyncErrors(async (req, res, next) => {
 });
 
 
-export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {})
+export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
+    const { availability, price, category, ratings, search } = req.query;
+})
