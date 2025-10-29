@@ -84,4 +84,11 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
     }
   }
 
+    // Filter products by category
+  if (category) {
+    conditions.push(`category ILIKE $${index}`);
+    values.push(`%${category}%`);
+    index++;
+  }
+
 });
