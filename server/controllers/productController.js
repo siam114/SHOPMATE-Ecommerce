@@ -119,5 +119,10 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
 
   const totalProducts = parseInt(totalProductsResult.rows[0].count);
 
+    paginationPlaceholders.limit = `$${index}`;
+  values.push(limit);
+  index++;
+
+
 
 });
