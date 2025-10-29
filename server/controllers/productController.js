@@ -91,4 +91,11 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
     index++;
   }
 
+    // Filter products by rating
+  if (ratings) {
+    conditions.push(`ratings >= $${index}`);
+    values.push(ratings);
+    index++;
+  }
+
 });
