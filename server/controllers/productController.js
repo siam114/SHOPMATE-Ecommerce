@@ -64,4 +64,13 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
   let index = 1;
 
   let paginationPlaceholders = {};
+
+   // Filter products by availability
+   if(availability === "in-stock") {
+      conditions.push(`stock > 5`);
+   } else if (availability === "limited") {
+    conditions.push(`stock > 0 AND stock <= 5`);
+  } else if (availability === "out-of-stock") {
+    conditions.push(`stock = 0`);
+  }
 });
