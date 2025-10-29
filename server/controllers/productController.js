@@ -59,9 +59,9 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
   const limit = 10;
   const offset = (page - 1) * limit;
 
-   const conditions = [];
+  const conditions = [];
   let values = [];
   let index = 1;
 
-    let paginationPlaceholders = {};
+  let paginationPlaceholders = {};
 });
