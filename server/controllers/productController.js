@@ -116,4 +116,8 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
     `SELECT COUNT(*) FROM products p ${whereClause}`,
     values
   );
+
+  const totalProducts = parseInt(totalProductsResult.rows[0].count);
+
+
 });
