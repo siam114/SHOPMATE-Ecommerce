@@ -73,4 +73,15 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
   } else if (availability === "out-of-stock") {
     conditions.push(`stock = 0`);
   }
+
+   // Filter products by price
+  if (price) {
+    const [minPrice, maxPrice] = price.split("-");
+    if (minPrice && maxPrice) {
+      conditions.push(`price BETWEEN $${index} AND $${index + 1}`);
+      values.push(minPrice, maxPrice);
+      index += 2;
+    }
+  }
+
 });
