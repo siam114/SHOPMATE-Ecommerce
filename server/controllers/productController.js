@@ -123,6 +123,9 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
   values.push(limit);
   index++;
 
+   paginationPlaceholders.offset = `$${index}`;
+  values.push(offset);
+  index++;
 
 
 });
