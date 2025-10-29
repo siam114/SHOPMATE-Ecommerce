@@ -74,7 +74,7 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
     conditions.push(`stock = 0`);
   }
 
-   // Filter products by price
+  // Filter products by price
   if (price) {
     const [minPrice, maxPrice] = price.split("-");
     if (minPrice && maxPrice) {
@@ -84,21 +84,21 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
     }
   }
 
-    // Filter products by category
+  // Filter products by category
   if (category) {
     conditions.push(`category ILIKE $${index}`);
     values.push(`%${category}%`);
     index++;
   }
 
-    // Filter products by rating
+  // Filter products by rating
   if (ratings) {
     conditions.push(`ratings >= $${index}`);
     values.push(ratings);
     index++;
   }
 
-    // Add search query
+  // Add search query
   if (search) {
     conditions.push(
       `(p.name ILIKE $${index} OR p.description ILIKE $${index})`
@@ -107,7 +107,7 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
     index++;
   }
 
-    const whereClause = conditions.length
+  const whereClause = conditions.length
     ? `WHERE ${conditions.join(" AND ")}`
     : "";
 
@@ -116,5 +116,4 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
     `SELECT COUNT(*) FROM products p ${whereClause}`,
     values
   );
-
 });
