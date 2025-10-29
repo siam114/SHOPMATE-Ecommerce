@@ -62,4 +62,6 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
    const conditions = [];
   let values = [];
   let index = 1;
+
+    let paginationPlaceholders = {};
 });
