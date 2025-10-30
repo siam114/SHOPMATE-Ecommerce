@@ -167,4 +167,6 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
     ORDER BY p.ratings DESC, p.created_at DESC
     LIMIT 8
   `;
+
+   const topRatedResult = await database.query(topRatedQuery);
 });
