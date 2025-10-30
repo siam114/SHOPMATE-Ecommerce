@@ -180,6 +180,6 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
 });
 
 export const updateProduct = catchAsyncErrors(async (req, res, next) => {
-    const { productId } = req.params;
+  const { productId } = req.params;
   const { name, description, price, category, stock } = req.body;
-})
+});
