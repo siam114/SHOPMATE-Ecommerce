@@ -142,7 +142,7 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
 
   const result = await database.query(query, values);
 
-   // QUERY FOR FETCHING NEW PRODUCTS
+  // QUERY FOR FETCHING NEW PRODUCTS
   const newProductsQuery = `
     SELECT p.*,
     COUNT(r.id) AS review_count
@@ -154,9 +154,9 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
     LIMIT 8
   `;
 
-   const newProductsResult = await database.query(newProductsQuery);
+  const newProductsResult = await database.query(newProductsQuery);
 
-     // QUERY FOR FETCHING TOP RATING PRODUCTS (rating >= 4.5)
+  // QUERY FOR FETCHING TOP RATING PRODUCTS (rating >= 4.5)
   const topRatedQuery = `
     SELECT p.*,
     COUNT(r.id) AS review_count
@@ -168,9 +168,9 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
     LIMIT 8
   `;
 
-   const topRatedResult = await database.query(topRatedQuery);
+  const topRatedResult = await database.query(topRatedQuery);
 
-    res.status(200).json({
+  res.status(200).json({
     success: true,
     products: result.rows,
     totalProducts,
