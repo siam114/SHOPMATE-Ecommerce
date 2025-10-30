@@ -1,5 +1,8 @@
 import express from "express";
-import { createProduct, fetchAllProducts } from "../controllers/productController.js";
+import {
+  createProduct,
+  fetchAllProducts,
+} from "../controllers/productController.js";
 import {
   authorizedRoles,
   isAuthenticated,
