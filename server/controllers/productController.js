@@ -141,4 +141,16 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
     `;
 
   const result = await database.query(query, values);
+
+   // QUERY FOR FETCHING NEW PRODUCTS
+  const newProductsQuery = `
+    SELECT p.*,
+    COUNT(r.id) AS review_count
+    FROM products p
+    LEFT JOIN reviews r ON p.id = r.product_id
+    WHERE p.created_at >= NOW() - INTERVAL '30 days'
+    GROUP BY p.id
+    ORDER BY p.created_at DESC
+    LIMIT 8
+  `;
 });
