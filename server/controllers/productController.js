@@ -169,4 +169,12 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
   `;
 
    const topRatedResult = await database.query(topRatedQuery);
+
+    res.status(200).json({
+    success: true,
+    products: result.rows,
+    totalProducts,
+    newProducts: newProductsResult.rows,
+    topRatedProducts: topRatedResult.rows,
+  });
 });
