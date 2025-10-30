@@ -126,4 +126,17 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
   paginationPlaceholders.offset = `$${index}`;
   values.push(offset);
   index++;
+
+    // FETCH WITH REVIEWS
+  const query = `
+    SELECT p.*, 
+    COUNT(r.id) AS review_count 
+    FROM products p 
+    LEFT JOIN reviews r ON p.id = r.product_id
+    ${whereClause}
+    GROUP BY p.id
+    ORDER BY p.created_at DESC
+    LIMIT ${paginationPlaceholders.limit}
+    OFFSET ${paginationPlaceholders.offset}
+    `;
 });
