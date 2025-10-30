@@ -1,5 +1,5 @@
 import express from "express";
-import { createProduct } from "../controllers/productController.js";
+import { createProduct, fetchAllProducts } from "../controllers/productController.js";
 import {
   authorizedRoles,
   isAuthenticated,
@@ -14,7 +14,7 @@ router.post(
   createProduct
 );
 
-// router.get("/", fetchAllProducts);
+router.get("/", fetchAllProducts);
 // router.get("/singleProduct/:productId", fetchSingleProduct);
 // router.put("/post-new/review/:productId", isAuthenticated, postProductReview);
 // router.delete("/delete/review/:productId", isAuthenticated, deleteReview);
