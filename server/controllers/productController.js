@@ -178,3 +178,5 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
     topRatedProducts: topRatedResult.rows,
   });
 });
+
+export const updateProduct = catchAsyncErrors(async (req, res, next) => {})
