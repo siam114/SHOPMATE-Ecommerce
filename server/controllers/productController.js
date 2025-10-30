@@ -139,4 +139,6 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
     LIMIT ${paginationPlaceholders.limit}
     OFFSET ${paginationPlaceholders.offset}
     `;
+
+  const result = await database.query(query, values);
 });
