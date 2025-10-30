@@ -127,7 +127,7 @@ export const fetchAllProducts = catchAsyncErrors(async (req, res, next) => {
   values.push(offset);
   index++;
 
-    // FETCH WITH REVIEWS
+  // FETCH WITH REVIEWS
   const query = `
     SELECT p.*, 
     COUNT(r.id) AS review_count 
