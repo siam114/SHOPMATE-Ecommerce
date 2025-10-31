@@ -202,7 +202,7 @@ export const updateProduct = catchAsyncErrors(async (req, res, next) => {
     [name, description, price / 283, category, stock, productId]
   );
 
-    res.status(200).json({
+  res.status(200).json({
     success: true,
     message: "Product updated successfully.",
     updatedProduct: result.rows[0],
