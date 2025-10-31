@@ -188,4 +188,8 @@ export const updateProduct = catchAsyncErrors(async (req, res, next) => {
       new ErrorHandler("Please provide complete product details.", 400)
     );
   }
+
+    const product = await database.query("SELECT * FROM products WHERE id = $1", [
+    productId,
+  ]);
 });
