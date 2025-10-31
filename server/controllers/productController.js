@@ -183,7 +183,7 @@ export const updateProduct = catchAsyncErrors(async (req, res, next) => {
   const { productId } = req.params;
   const { name, description, price, category, stock } = req.body;
 
-    if (!name || !description || !price || !category || !stock) {
+  if (!name || !description || !price || !category || !stock) {
     return next(
       new ErrorHandler("Please provide complete product details.", 400)
     );
