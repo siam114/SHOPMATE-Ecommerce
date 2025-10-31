@@ -201,4 +201,10 @@ export const updateProduct = catchAsyncErrors(async (req, res, next) => {
     `UPDATE products SET name = $1, description = $2, price = $3, category = $4, stock = $5 WHERE id = $6 RETURNING *`,
     [name, description, price / 283, category, stock, productId]
   );
+
+    res.status(200).json({
+    success: true,
+    message: "Product updated successfully.",
+    updatedProduct: result.rows[0],
+  });
 });
