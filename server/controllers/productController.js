@@ -209,4 +209,6 @@ export const updateProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-export const deleteProduct = catchAsyncErrors(async (req, res, next) => {})
+export const deleteProduct = catchAsyncErrors(async (req, res, next) => {
+  const { productId } = req.params;
+})
