@@ -229,4 +229,11 @@ export const deleteProduct = catchAsyncErrors(async (req, res, next) => {
     if (deleteResult.rows.length === 0) {
     return next(new ErrorHandler("Failed to delete product.", 500));
   }
+
+    // Delete images from Cloudinary
+  if (images && images.length > 0) {
+    for (const image of images) {
+      await cloudinary.uploader.destroy(image.public_id);
+    }
+  }
 });
