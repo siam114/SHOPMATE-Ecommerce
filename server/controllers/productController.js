@@ -212,17 +212,17 @@ export const updateProduct = catchAsyncErrors(async (req, res, next) => {
 export const deleteProduct = catchAsyncErrors(async (req, res, next) => {
   const { productId } = req.params;
 
-    const product = await database.query("SELECT * FROM products WHERE id = $1", [
+  const product = await database.query("SELECT * FROM products WHERE id = $1", [
     productId,
   ]);
   if (product.rows.length === 0) {
     return next(new ErrorHandler("Product not found.", 404));
-  };
+  }
 
   const images = product.rows[0].images;
 
-    const deleteResult = await database.query(
+  const deleteResult = await database.query(
     "DELETE FROM products WHERE id = $1 RETURNING *",
     [productId]
   );
-})
+});
