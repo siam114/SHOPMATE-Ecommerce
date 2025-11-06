@@ -220,4 +220,9 @@ export const deleteProduct = catchAsyncErrors(async (req, res, next) => {
   };
 
   const images = product.rows[0].images;
+
+    const deleteResult = await database.query(
+    "DELETE FROM products WHERE id = $1 RETURNING *",
+    [productId]
+  );
 })
