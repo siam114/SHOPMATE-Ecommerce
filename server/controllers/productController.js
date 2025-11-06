@@ -235,5 +235,10 @@ export const deleteProduct = catchAsyncErrors(async (req, res, next) => {
     for (const image of images) {
       await cloudinary.uploader.destroy(image.public_id);
     }
-  }
+  };
+
+   res.status(200).json({
+    success: true,
+    message: "Product deleted successfully.",
+  });
 });
