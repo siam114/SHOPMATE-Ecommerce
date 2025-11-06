@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createProduct,
+  deleteProduct,
   fetchAllProducts,
   updateProduct,
 } from "../controllers/productController.js";
@@ -28,12 +29,12 @@ router.put(
   authorizedRoles("Admin"),
   updateProduct
 );
-// router.delete(
-//   "/admin/delete/:productId",
-//   isAuthenticated,
-//   authorizedRoles("Admin"),
-//   deleteProduct
-// );
+router.delete(
+  "/admin/delete/:productId",
+  isAuthenticated,
+  authorizedRoles("Admin"),
+  deleteProduct
+);
 // router.post("/ai-search", isAuthenticated, fetchAIFilteredProducts);
 
 export default router;
