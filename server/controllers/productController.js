@@ -225,4 +225,8 @@ export const deleteProduct = catchAsyncErrors(async (req, res, next) => {
     "DELETE FROM products WHERE id = $1 RETURNING *",
     [productId]
   );
+
+    if (deleteResult.rows.length === 0) {
+    return next(new ErrorHandler("Failed to delete product.", 500));
+  }
 });
