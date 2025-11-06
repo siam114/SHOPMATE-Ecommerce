@@ -217,5 +217,7 @@ export const deleteProduct = catchAsyncErrors(async (req, res, next) => {
   ]);
   if (product.rows.length === 0) {
     return next(new ErrorHandler("Product not found.", 404));
-  }
+  };
+
+  const images = product.rows[0].images;
 })
