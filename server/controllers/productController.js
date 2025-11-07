@@ -268,4 +268,10 @@ export const fetchSingleProduct = catchAsyncErrors(async (req, res, next) => {
          GROUP BY p.id`,
     [productId]
   );
+
+  res.status(200).json({
+    success: true,
+    message: "Product fetched successfully.",
+    product: result.rows[0],
+  });
 })
