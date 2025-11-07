@@ -242,3 +242,5 @@ export const deleteProduct = catchAsyncErrors(async (req, res, next) => {
     message: "Product deleted successfully.",
   });
 });
+
+export const fetchSingleProduct = catchAsyncErrors(async (req, res, next) => {})
