@@ -246,7 +246,7 @@ export const deleteProduct = catchAsyncErrors(async (req, res, next) => {
 export const fetchSingleProduct = catchAsyncErrors(async (req, res, next) => {
   const { productId } = req.params;
 
-   const result = await database.query(
+  const result = await database.query(
     `
         SELECT p.*,
         COALESCE(
@@ -274,4 +274,4 @@ export const fetchSingleProduct = catchAsyncErrors(async (req, res, next) => {
     message: "Product fetched successfully.",
     product: result.rows[0],
   });
-})
+});
