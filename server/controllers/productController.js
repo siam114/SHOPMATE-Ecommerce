@@ -247,6 +247,25 @@ export const fetchSingleProduct = catchAsyncErrors(async (req, res, next) => {
   const { productId } = req.params;
 
    const result = await database.query(
-    
-   )
+    `
+        SELECT p.*,
+        COALESCE(
+        json_agg(
+        json_build_object(
+            'review_id', r.id,
+            'rating', r.rating,
+            'comment', r.comment,
+            'reviewer', json_build_object(
+            'id', u.id,
+            'name', u.name,
+            'avatar', u.avatar
+            )) 
+        ) FILTER (WHERE r.id IS NOT NULL), '[]') AS reviews
+         FROM products p
+         LEFT JOIN reviews r ON p.id = r.product_id
+         LEFT JOIN users u ON r.user_id = u.id
+         WHERE p.id  = $1
+         GROUP BY p.id`,
+    [productId]
+  );
 })
