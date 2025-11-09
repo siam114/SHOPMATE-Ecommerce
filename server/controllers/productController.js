@@ -276,4 +276,4 @@ export const fetchSingleProduct = catchAsyncErrors(async (req, res, next) => {
   });
 });
 
-export const postProductReview = catchAsyncErrors(async (req, res, next) => {})
+export const postProductReview = catchAsyncErrors(async (req, res, next) => {});
