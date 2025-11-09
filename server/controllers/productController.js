@@ -280,7 +280,7 @@ export const postProductReview = catchAsyncErrors(async (req, res, next) => {
   const { productId } = req.params;
   const { rating, comment } = req.body;
 
-   if (!rating || !comment) {
+  if (!rating || !comment) {
     return next(new ErrorHandler("Please provide rating and comment.", 400));
   }
 });
