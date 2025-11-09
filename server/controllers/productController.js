@@ -278,4 +278,6 @@ export const fetchSingleProduct = catchAsyncErrors(async (req, res, next) => {
 
 export const postProductReview = catchAsyncErrors(async (req, res, next) => {
   const { productId } = req.params;
+
+  const { rating, comment } = req.body;
 });
