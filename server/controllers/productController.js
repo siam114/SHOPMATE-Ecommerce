@@ -314,4 +314,11 @@ export const postProductReview = catchAsyncErrors(async (req, res, next) => {
   if (product.rows.length === 0) {
     return next(new ErrorHandler("Product not found.", 404));
   }
+
+    const isAlreadyReviewed = await database.query(
+    `
+    SELECT * FROM reviews WHERE product_id = $1 AND user_id = $2
+    `,
+    [productId, req.user.id]
+  );
 });
