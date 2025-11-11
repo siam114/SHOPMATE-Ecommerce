@@ -299,4 +299,11 @@ export const postProductReview = catchAsyncErrors(async (req, res, next) => {
     req.user.id,
     productId,
   ]);
+
+    if (rows.length === 0) {
+    return res.status(403).json({
+      success: false,
+      message: "You can only review a product you've purchased.",
+    });
+  }
 });
