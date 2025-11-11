@@ -335,4 +335,9 @@ export const postProductReview = catchAsyncErrors(async (req, res, next) => {
       [productId, req.user.id, rating, comment]
     );
   }
+
+    const allReviews = await database.query(
+    `SELECT AVG(rating) AS avg_rating FROM reviews WHERE product_id = $1`,
+    [productId]
+  );
 });
