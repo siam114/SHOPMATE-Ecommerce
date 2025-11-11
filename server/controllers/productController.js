@@ -306,4 +306,8 @@ export const postProductReview = catchAsyncErrors(async (req, res, next) => {
       message: "You can only review a product you've purchased.",
     });
   }
+
+    const product = await database.query("SELECT * FROM products WHERE id = $1", [
+    productId,
+  ]);
 });
