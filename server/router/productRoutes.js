@@ -4,6 +4,7 @@ import {
   deleteProduct,
   fetchAllProducts,
   fetchSingleProduct,
+  postProductReview,
   updateProduct,
 } from "../controllers/productController.js";
 import {
@@ -22,7 +23,7 @@ router.post(
 
 router.get("/", fetchAllProducts);
 router.get("/singleProduct/:productId", fetchSingleProduct);
-// router.put("/post-new/review/:productId", isAuthenticated, postProductReview);
+router.put("/post-new/review/:productId", isAuthenticated, postProductReview);
 // router.delete("/delete/review/:productId", isAuthenticated, deleteReview);
 router.put(
   "/admin/update/:productId",
