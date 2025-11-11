@@ -282,5 +282,16 @@ export const postProductReview = catchAsyncErrors(async (req, res, next) => {
 
   if (!rating || !comment) {
     return next(new ErrorHandler("Please provide rating and comment.", 400));
-  }
+  };
+
+    const purchasheCheckQuery = `
+    SELECT oi.product_id
+    FROM order_items oi
+    JOIN orders o ON o.id = oi.order_id
+    JOIN payments p ON p.order_id = o.id
+    WHERE o.buyer_id = $1
+    AND oi.product_id = $2
+    AND p.payment_status = 'Paid'
+    LIMIT 1 
+  `;
 });
