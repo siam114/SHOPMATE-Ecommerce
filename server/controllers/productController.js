@@ -282,9 +282,9 @@ export const postProductReview = catchAsyncErrors(async (req, res, next) => {
 
   if (!rating || !comment) {
     return next(new ErrorHandler("Please provide rating and comment.", 400));
-  };
+  }
 
-    const purchasheCheckQuery = `
+  const purchasheCheckQuery = `
     SELECT oi.product_id
     FROM order_items oi
     JOIN orders o ON o.id = oi.order_id
@@ -295,12 +295,12 @@ export const postProductReview = catchAsyncErrors(async (req, res, next) => {
     LIMIT 1 
   `;
 
-    const { rows } = await database.query(purchasheCheckQuery, [
+  const { rows } = await database.query(purchasheCheckQuery, [
     req.user.id,
     productId,
   ]);
 
-    if (rows.length === 0) {
+  if (rows.length === 0) {
     return res.status(403).json({
       success: false,
       message: "You can only review a product you've purchased.",
