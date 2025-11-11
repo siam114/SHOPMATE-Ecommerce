@@ -342,4 +342,11 @@ export const postProductReview = catchAsyncErrors(async (req, res, next) => {
   );
 
   const newAvgRating = allReviews.rows[0].avg_rating;
+
+    const updatedProduct = await database.query(
+    `
+        UPDATE products SET ratings = $1 WHERE id = $2 RETURNING *
+        `,
+    [newAvgRating, productId]
+  );
 });
