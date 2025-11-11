@@ -321,4 +321,18 @@ export const postProductReview = catchAsyncErrors(async (req, res, next) => {
     `,
     [productId, req.user.id]
   );
+
+    let review;
+
+  if (isAlreadyReviewed.rows.length > 0) {
+    review = await database.query(
+      "UPDATE reviews SET rating = $1, comment = $2 WHERE product_id = $3 AND user_id = $4 RETURNING *",
+      [rating, comment, productId, req.user.id]
+    );
+  } else {
+    review = await database.query(
+      "INSERT INTO reviews (product_id, user_id, rating, comment) VALUES ($1, $2, $3, $4) RETURNING *",
+      [productId, req.user.id, rating, comment]
+    );
+  }
 });
