@@ -310,4 +310,8 @@ export const postProductReview = catchAsyncErrors(async (req, res, next) => {
     const product = await database.query("SELECT * FROM products WHERE id = $1", [
     productId,
   ]);
+
+    if (product.rows.length === 0) {
+    return next(new ErrorHandler("Product not found.", 404));
+  }
 });
