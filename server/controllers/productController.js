@@ -294,4 +294,9 @@ export const postProductReview = catchAsyncErrors(async (req, res, next) => {
     AND p.payment_status = 'Paid'
     LIMIT 1 
   `;
+
+    const { rows } = await database.query(purchasheCheckQuery, [
+    req.user.id,
+    productId,
+  ]);
 });
