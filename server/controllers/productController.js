@@ -340,4 +340,6 @@ export const postProductReview = catchAsyncErrors(async (req, res, next) => {
     `SELECT AVG(rating) AS avg_rating FROM reviews WHERE product_id = $1`,
     [productId]
   );
+
+  const newAvgRating = allReviews.rows[0].avg_rating;
 });
