@@ -383,4 +383,11 @@ export const deleteReview = catchAsyncErrors(async (req, res, next) => {
         `,
     [newAvgRating, productId]
   );
+
+    res.status(200).json({
+    success: true,
+    message: "Your review has been deleted.",
+    review: review.rows[0],
+    product: updatedProduct.rows[0],
+  });
 });
