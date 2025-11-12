@@ -377,14 +377,14 @@ export const deleteReview = catchAsyncErrors(async (req, res, next) => {
 
   const newAvgRating = allReviews.rows[0].avg_rating;
 
-    const updatedProduct = await database.query(
+  const updatedProduct = await database.query(
     `
         UPDATE products SET ratings = $1 WHERE id = $2 RETURNING *
         `,
     [newAvgRating, productId]
   );
 
-    res.status(200).json({
+  res.status(200).json({
     success: true,
     message: "Your review has been deleted.",
     review: review.rows[0],
