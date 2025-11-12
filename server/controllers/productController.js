@@ -360,4 +360,9 @@ export const postProductReview = catchAsyncErrors(async (req, res, next) => {
 
 export const deleteReview = catchAsyncErrors(async (req, res, next) => {
   const { productId } = req.params;
+
+    const review = await database.query(
+    "DELETE FROM reviews WHERE product_id = $1 AND user_id = $2 RETURNING *",
+    [productId, req.user.id]
+  );
 })
