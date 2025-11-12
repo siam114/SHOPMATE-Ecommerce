@@ -357,3 +357,5 @@ export const postProductReview = catchAsyncErrors(async (req, res, next) => {
     product: updatedProduct.rows[0],
   });
 });
+
+export const deleteReview = catchAsyncErrors(async (req, res, next) => {})
