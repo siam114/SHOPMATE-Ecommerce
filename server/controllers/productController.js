@@ -369,4 +369,9 @@ export const deleteReview = catchAsyncErrors(async (req, res, next) => {
     if (review.rows.length === 0) {
     return next(new ErrorHandler("Review not found.", 404));
   }
+
+    const allReviews = await database.query(
+    `SELECT AVG(rating) AS avg_rating FROM reviews WHERE product_id = $1`,
+    [productId]
+  );
 });
