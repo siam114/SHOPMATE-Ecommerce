@@ -365,4 +365,8 @@ export const deleteReview = catchAsyncErrors(async (req, res, next) => {
     "DELETE FROM reviews WHERE product_id = $1 AND user_id = $2 RETURNING *",
     [productId, req.user.id]
   );
+
+    if (review.rows.length === 0) {
+    return next(new ErrorHandler("Review not found.", 404));
+  }
 });
